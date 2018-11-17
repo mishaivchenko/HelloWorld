@@ -1,5 +1,4 @@
-image: maven:3-jdk-8
-
+language: java
 
 stages:
 
