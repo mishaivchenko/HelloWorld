@@ -26,15 +26,15 @@ public class HelloWorldTalkerTest {
         Assert.assertTrue(matcher.matches());
     }
     @Test
-    public void LocaleTestMustReturnTrueWhenLangEqualsRu(){
+    public void LocaleTestMustReturnFalseWhenLangNotEqualsEn(){
         //GIVEN
         Locale.setDefault(new Locale("ru","UA"));
         HelloWorldTalker talker = new HelloWorldTalker();
         //WHEN
         talker.say();
-        pattern = Pattern.compile(MESSAGE_RU_PATTERN);
+        pattern = Pattern.compile(MESSAGE_EN_PATTERN);
         matcher = pattern.matcher(talker.getMessage());
         //THEN
-        Assert.assertTrue(matcher.matches());
+        Assert.assertFalse(matcher.matches());
     }
 }
