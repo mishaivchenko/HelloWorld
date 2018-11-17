@@ -1,4 +1,7 @@
+import org.apache.log4j.Logger;
+import org.junit.AfterClass;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import timeanalizer.TimeAnalyzer;
 
@@ -9,7 +12,17 @@ import java.util.GregorianCalendar;
 
 public class TimeAnalyzerTest {
     private TimeAnalyzer timeAnalyzer;
+    private static final org.apache.log4j.Logger logger = Logger.getLogger(HelloWorldTalkerTest.class);
 
+    @BeforeClass
+    public static void informBefore() {
+        logger.info("=====TimeAnalyzerTest.class is running===== ");
+    }
+
+    @AfterClass
+    public static void informAfter() {
+        logger.info("=====TimeAnalyzerTest.class is completed===== ");
+    }
     @Test
     public void testMustReturnMorning() {
         //Given
