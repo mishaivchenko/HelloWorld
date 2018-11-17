@@ -1,5 +1,7 @@
 language: java
- default_text_charset: 'utf-8'
+
+default_text_charset: 'utf-8'
+
 stages:
 
   - compile
