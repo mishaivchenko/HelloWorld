@@ -1,16 +1,15 @@
 package timeanalizer;
 
 import org.apache.log4j.Logger;
-import talker.HelloWorldTalker;
 
-import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 
 public class TimeAnalyzer {
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH");
-    private Date date;
     private final org.apache.log4j.Logger logger = Logger.getLogger(TimeAnalyzer.class);
+    private Date date;
 
     public void setDate(Date date) {
         this.date = date;
@@ -21,20 +20,23 @@ public class TimeAnalyzer {
         if (date == null) {
             date = new Date();
         }
-        String dateInString = simpleDateFormat.format(date);
-        int time = Integer.parseInt(dateInString);
-        String partOfTheDay = analyze(time);
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        int hours = calendar.get(Calendar.HOUR_OF_DAY);
+        int minutes = calendar.get(Calendar.MINUTE);
+        int seconds = calendar.get(Calendar.SECOND);
+        String partOfTheDay = analyze(hours, minutes, seconds);
         logger.info("The part of the day is " + partOfTheDay);
-        logger.debug("WHAT IS IT");
         return partOfTheDay;
     }
 
-    private String analyze(int time) {
-        if (time < 9 && time > 6) {
+    private String analyze(int hours, int minutes, int seconds) {
+
+        if ((hours >= 6 && minutes >= 0 && seconds >= 0) && (hours <= 8 && minutes <= 59 && seconds <= 59)) {
             return "morning";
-        } else if (time > 9 && time < 19) {
+        } else if ((hours >= 9 && minutes >= 0 && seconds >= 0) && (hours <= 18 && minutes <= 59 && seconds <= 59)) {
             return "day";
-        } else if (time > 19 && time < 23) {
+        } else if ((hours >= 19 && minutes >= 0 && seconds >= 0) && (hours <= 22 && minutes <= 59 && seconds <= 59)) {
             return "evening";
         } else {
             return "night";

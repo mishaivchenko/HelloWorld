@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 public class HelloWorldTalkerTest {
     private static final String MESSAGE_EN_PATTERN = "^[a-zA-Z].+$";
-    private static final String MESSAGE_RU_PATTERN = "^[Р-пр-џ].+$";
     private static final org.apache.log4j.Logger logger = Logger.getLogger(HelloWorldTalkerTest.class);
     private Pattern pattern;
     private Matcher matcher;
@@ -24,7 +23,7 @@ public class HelloWorldTalkerTest {
     }
 
     @Test
-    public void falseLocaleTestMustReturnEnglishWord() {
+    public void LocaleTestMustReturnEnglishWord() {
         //Given
         Locale.setDefault(new Locale("fr", "EN"));
         HelloWorldTalker talker = new HelloWorldTalker();
